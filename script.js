@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // CONFIGURAÇÕES DA VIAGEM
     // =====================================================
 
-    // Primavera do Leste - MT
-    const ORIGEM = [-15.5589, -54.2961];
+    // Nova Xavantina - MT
+    const ORIGEM = [-14.6725, -52.3551];
 
     // Cocalinho - MT
     const DESTINO = [-14.3974, -50.9957];
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // NÃO alterar depois que a viagem começar
     const STORAGE_START_KEY =
-        "inicio_viagem_primavera_cocalinho";
+        "inicio_viagem_nova_xavantina_cocalinho";
 
     const STORAGE_VERSION_KEY =
         "viagem_versao";
@@ -384,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .addTo(map)
             .bindPopup(
                 "<strong>🚛 Saída</strong><br>" +
-                "Primavera do Leste - MT"
+                "Nova Xavantina - MT"
             );
 
 
@@ -393,7 +393,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // =================================================
 
         L.marker(DESTINO)
-            .addTo(map)
             .addTo(map)
             .bindPopup(
                 "<strong>📦 Destino</strong><br>" +
@@ -436,7 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         retainedMarker.bindPopup(
             "<strong>🚛 Caminhão</strong><br>" +
-            "Entrega em andamento"
+            "Pendente de pagamento de nota fiscal"
         );
 
 
@@ -452,202 +451,20 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        iniciarViagem();
-
+        // Configura o status inicial como PENDENTE e mantém parado
+        configurarStatusPendente();
     }
 
 
     // =====================================================
-    // INICIAR / RECUPERAR VIAGEM
+    // STATUS PENDENTE (CAMINHÃO PARADO)
     // =====================================================
 
-    function iniciarViagem() {
-
-        let inicio =
-            localStorage.getItem(
-                STORAGE_START_KEY
-            );
-
-
-        // =================================================
-        // PRIMEIRO ACESSO
-        // =================================================
-
-        if (!inicio) {
-
-            inicio =
-                Date.now();
-
-
-            localStorage.setItem(
-                STORAGE_START_KEY,
-                inicio
-            );
-
-
-            localStorage.setItem(
-                STORAGE_VERSION_KEY,
-                VIAGEM_VERSAO
-            );
-
+    function configurarStatusPendente() {
+        if (statusBadge) {
+            statusBadge.innerText = "PENDENTE";
+            statusBadge.style.background = "#f59e0b"; // Cor laranja para pendência
         }
-
-
-        inicio =
-            parseInt(inicio, 10);
-
-
-        // =================================================
-        // PROGRESSO
-        // =================================================
-
-        atualizarPosicao(inicio);
-
-    }
-
-
-    // =====================================================
-    // ATUALIZAR POSIÇÃO
-    // =====================================================
-
-    function atualizarPosicao(inicio) {
-
-        if (!fullRoute.length) {
-            return;
-        }
-
-
-        const agora =
-            Date.now();
-
-
-        /*
-         * Quanto tempo passou desde o início.
-         */
-
-        const tempoDecorrido =
-            agora - inicio;
-
-
-        /*
-         * Calcula percentual.
-         *
-         * 0 = início
-         * 0.5 = metade
-         * 1 = destino
-         */
-
-        let progresso =
-            tempoDecorrido /
-            DURACAO_VIAGEM;
-
-
-        /*
-         * Garante que fique entre 0 e 1.
-         */
-
-        progresso =
-            Math.max(
-                0,
-                Math.min(
-                    progresso,
-                    1
-                )
-            );
-
-
-        // =================================================
-        // POSIÇÃO DO CAMINHÃO
-        // =================================================
-
-        const index =
-            Math.floor(
-                progresso *
-                (fullRoute.length - 1)
-            );
-
-
-        const posicao =
-            fullRoute[index];
-
-
-        if (
-            retainedMarker &&
-            posicao
-        ) {
-
-            retainedMarker.setLatLng(
-                posicao
-            );
-
-        }
-
-
-        // =================================================
-        // STATUS
-        // =================================================
-
-        atualizarStatus(
-            progresso
-        );
-
-
-        // =================================================
-        // CONTINUAR ANIMAÇÃO
-        // =================================================
-
-        if (progresso < 1) {
-
-            animationFrame =
-                requestAnimationFrame(
-                    () => atualizarPosicao(inicio)
-                );
-
-        }
-
-    }
-
-
-    // =====================================================
-    // STATUS
-    // =====================================================
-
-    function atualizarStatus(
-        progresso
-    ) {
-
-        if (!statusBadge) {
-            return;
-        }
-
-
-        if (progresso >= 1) {
-
-            statusBadge.innerText =
-                "ENTREGUE";
-
-            statusBadge.style.background =
-                "#2563eb";
-
-
-            if (retainedMarker) {
-
-                retainedMarker.setLatLng(
-                    DESTINO
-                );
-
-            }
-
-        } else {
-
-            statusBadge.innerText =
-                "EM TRÂNSITO";
-
-            statusBadge.style.background =
-                "#22c55e";
-
-        }
-
     }
 
 
@@ -667,15 +484,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
-        /*
-         * ATENÇÃO:
-         *
-         * Isso apaga o início da viagem.
-         *
-         * Ao entrar novamente,
-         * uma nova viagem começará.
-         */
 
         localStorage.removeItem(
             "codigoAtivo"
