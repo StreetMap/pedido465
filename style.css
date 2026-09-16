@@ -1,0 +1,427 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+
+/* ================= LOGIN ================= */
+
+.login-overlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #1e293b
+        );
+
+    z-index: 9999;
+}
+
+
+.login-card {
+    width: 90%;
+    max-width: 420px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+
+.login-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+
+.login-card h1 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+
+.login-card p {
+    color: #64748b;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+
+.login-card input {
+    width: 100%;
+
+    padding: 15px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    margin-bottom: 12px;
+}
+
+
+.login-card input:focus {
+    border-color: #2563eb;
+}
+
+
+.login-card button {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.login-card button:hover {
+    background: #1d4ed8;
+}
+
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 95%;
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 30px 0;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.subtitle {
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #2563eb;
+
+    letter-spacing: 1.5px;
+}
+
+
+.header h1 {
+    font-size: 30px;
+
+    margin-top: 5px;
+}
+
+
+.status-badge {
+    padding: 10px 18px;
+
+    border-radius: 50px;
+
+    background: #22c55e;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* ================= INFO ================= */
+
+.info-card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, 0.06);
+}
+
+
+.location {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.location small {
+    display: block;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    margin-bottom: 3px;
+}
+
+
+.location strong {
+    font-size: 17px;
+}
+
+
+.location-icon {
+    width: 18px;
+    height: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 25px;
+}
+
+
+.origin {
+    color: #2563eb;
+}
+
+
+.destination {
+    color: #ef4444;
+}
+
+
+.route-line {
+    height: 30px;
+
+    width: 2px;
+
+    background: #cbd5e1;
+
+    margin-left: 8px;
+}
+
+
+/* ================= STATS ================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+
+.stat {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.stat > span {
+    font-size: 25px;
+}
+
+
+.stat small {
+    display: block;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    margin-bottom: 3px;
+}
+
+
+.stat strong {
+    font-size: 15px;
+}
+
+
+/* ================= MAPA ================= */
+
+.map-card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 8px;
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, 0.06);
+}
+
+
+#map {
+    width: 100%;
+
+    height: 600px;
+
+    border-radius: 14px;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 15px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+#btn-reset {
+    border: none;
+
+    background: transparent;
+
+    color: #ef4444;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+/* ================= MARKER ================= */
+
+.truck-marker {
+    background: transparent;
+
+    border: none;
+}
+
+
+.truck-marker div {
+    font-size: 34px;
+
+    filter:
+        drop-shadow(
+            0 3px 3px
+            rgba(0, 0, 0, 0.3)
+        );
+}
+
+
+/* ================= RESPONSIVO ================= */
+
+@media (max-width: 700px) {
+
+    .container {
+        width: 94%;
+
+        padding-top: 20px;
+    }
+
+
+    .header {
+        align-items: flex-start;
+
+        gap: 15px;
+
+        flex-direction: column;
+    }
+
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    #map {
+        height: 500px;
+    }
+
+
+    .footer {
+        flex-direction: column;
+
+        gap: 10px;
+
+        align-items: flex-start;
+    }
+
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rastreamento de Entrega</title>
+
+    <!-- Leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- CSS próprio -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= LOGIN ================= -->
+    <div id="login-overlay" class="login-overlay">
+
+        <div class="login-card">
+
+            <div class="login-icon">
+                🚛
+            </div>
+
+            <h1>Rastreamento de Entrega</h1>
+
+            <p>
+                Digite o código de rastreio para acompanhar sua entrega.
+            </p>
+
+            <input
+                type="text"
+                id="access-code"
+                placeholder="Código de rastreio"
+                autocomplete="off"
+            >
+
+            <button id="btn-login">
+                Acompanhar entrega
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CONTEÚDO ================= -->
+
+    <main class="container">
+
+        <header class="header">
+
+            <div>
+                <span class="subtitle">
+                    RASTREAMENTO
+                </span>
+
+                <h1>
+                    Acompanhe sua entrega
+                </h1>
+            </div>
+
+            <div id="time-badge" class="status-badge">
+                CARREGANDO
+            </div>
+
+        </header>
+
+
+        <!-- ================= INFORMAÇÕES ================= -->
+
+        <section id="info-card" class="info-card">
+
+            <div class="location">
+
+                <span class="location-icon origin">
+                    ●
+                </span>
+
+                <div>
+                    <small>SAÍDA</small>
+                    <strong>Primavera do Leste - MT</strong>
+                </div>
+
+            </div>
+
+
+            <div class="route-line"></div>
+
+
+            <div class="location">
+
+                <span class="location-icon destination">
+                    ●
+                </span>
+
+                <div>
+                    <small>DESTINO</small>
+                    <strong>Cocalinho - MT</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+                    <span>📍</span>
+                    <div>
+                        <small>DISTÂNCIA</small>
+                        <strong id="distance">
+                            Calculando...
+                        </strong>
+                    </div>
+                </div>
+
+
+                <div class="stat">
+                    <span>⏱️</span>
+                    <div>
+                        <small>PREVISÃO</small>
+                        <strong id="duration">
+                            Calculando...
+                        </strong>
+                    </div>
+                </div>
+
+
+                <div class="stat">
+                    <span>🚛</span>
+                    <div>
+                        <small>STATUS</small>
+                        <strong>
+                            Em trânsito
+                        </strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MAPA ================= -->
+
+        <section class="map-card">
+
+            <div id="map"></div>
+
+        </section>
+
+
+        <div class="footer">
+
+            <span>
+                🔒 Código de rastreio protegido
+            </span>
+
+            <button id="btn-reset">
+                Encerrar rastreamento
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- Leaflet -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
